@@ -40,4 +40,4 @@ jobs:
           file: ${{ inputs.dockerfile-choice }}
           push: true
           tags: |
-            ${{ env.ACR_LOGIN_SERVER }}/${{ inputs.dockerfile-choice == 'src/Web/Dockerfile' && 'webapp' || 'publicapi' }}:${{ env.IMAGE_VERSION }}
+            ${{ env.ACR_LOGIN_SERVER }}/${{env.TAG_NAME}}${{ inputs.dockerfile-choice == 'src/Web/Dockerfile' && 'webapp' || 'publicapi' }}:${{ env.IMAGE_VERSION }}
