@@ -1,9 +1,28 @@
+# 1. Namespace ต้องอยู่บนสุด
 apiVersion: v1
 kind: Namespace
 metadata:
   name: eshoponweb-user010
-
 ---
+# 2. Service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: eshoponweb-user010
+  name: webapp
+  labels:
+    app: sample-app
+    service: webapp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    service: webapp
+---
+# 3. Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,7 +43,8 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: eshoponweb-webapp-user010webapp:1.0.1
+          # ตรวจสอบชื่อ Registry และ Image ให้ตรงกับที่อยู่ใน ACR
+          image: aistraining.azurecr.io/eshoponweb-webapp-user010webapp:1.0.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
