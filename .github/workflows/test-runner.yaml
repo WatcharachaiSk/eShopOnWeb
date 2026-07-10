@@ -1,0 +1,9 @@
+name: Test Runner
+on: workflow_dispatch
+jobs:
+  test-runner:
+    runs-on: 
+      - self-hosted
+      - docker
+    steps:
+      - run: echo "Test Echo in first github runner"
