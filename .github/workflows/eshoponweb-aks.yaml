@@ -69,5 +69,4 @@ jobs:
         with:
           manifests: |
             .k8s/deployment.yaml
-            .k8s/service.yaml
           image: ${{ env.ACR_LOGIN_SERVER }}/${{env.TAG_NAME}}${{ inputs.dockerfile-choice == 'src/Web/Dockerfile' && 'webapp' || 'publicapi' }}:${{ env.IMAGE_VERSION }}
