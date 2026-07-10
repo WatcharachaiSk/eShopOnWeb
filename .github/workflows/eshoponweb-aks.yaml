@@ -64,11 +64,12 @@ jobs:
           cluster-name: ${{ env.AZURE_AKS_CLUSTER }}
           password: ${{ secrets.AZURE_CREDENTIALS }}
           resource-group: ${{ env.AZURE_RESOURCE_GROUP }}
-          
+
       - uses: azure/k8s-create-secret@v1
         with:
           container-registry-url: ${{ env.ACR_LOGIN_SERVER }}
           container-registry-name: aistraining
+          container-registry-username: ${{ secrets.ACR_USERNAME }}
           container-registry-password: ${{ secrets.ACR_PASSWORD }}
           secret-name: aks-secret
 
